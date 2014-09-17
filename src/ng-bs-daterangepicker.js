@@ -7,64 +7,68 @@
 'use strict';
 
 angular.module('ngBootstrap', []).directive('input', function ($compile, $parse) {
-	return {
-		restrict: 'E',
-		require: '?ngModel',
-		link: function ($scope, $element, $attributes, ngModel) {
-			if ($attributes.type !== 'daterange' || ngModel === null ) return;
+    return {
+        restrict: 'E',
+        require: '?ngModel',
+        link: function ($scope, $element, $attributes, ngModel) {
+            if ($attributes.type !== 'daterange' || ngModel === null ) return;
 
-			var options = {};
-			options.format = $attributes.format || 'YYYY-MM-DD';
-			options.separator = $attributes.separator || ' - ';
-			options.minDate = $attributes.minDate && moment($attributes.minDate);
-			options.maxDate = $attributes.maxDate && moment($attributes.maxDate);
-			options.dateLimit = $attributes.limit && moment.duration.apply(this, $attributes.limit.split(' ').map(function (elem, index) { return index === 0 && parseInt(elem, 10) || elem; }) );
-			options.ranges = $attributes.ranges && $parse($attributes.ranges)($scope);
-			options.locale = $attributes.locale && $parse($attributes.locale)($scope);
-			options.opens = $attributes.opens && $parse($attributes.opens)($scope);
+            var options = {};
+            options.format = $attributes.format || 'YYYY-MM-DD';
+            options.separator = $attributes.separator || ' - ';
+            options.minDate = $attributes.minDate && moment($attributes.minDate);
+            options.maxDate = $attributes.maxDate && moment($attributes.maxDate);
+            options.dateLimit = $attributes.limit && moment.duration.apply(this, $attributes.limit.split(' ').map(function (elem, index) { return index === 0 && parseInt(elem, 10) || elem; }) );
+            options.ranges = $attributes.ranges && $parse($attributes.ranges)($scope);
+            options.locale = $attributes.locale && $parse($attributes.locale)($scope);
+            options.opens = $attributes.opens && $parse($attributes.opens)($scope);
+            options.timePicker = $attributes.timePicker && $parse($attributes.timePicker)($scope);
+            options.timePickerIncrement = $attributes.timePickerIncrement && $parse($attributes.timePickerIncrement)($scope);
+            options.timePicker12Hour = $attributes.timePicker12Hour && $parse($attributes.timePicker12Hour)($scope);
+            options.singleDatePicker = $attributes.singleDatePicker && $parse($attributes.singleDatePicker)($scope);
 
-			function format(date) {
-				return date.format(options.format);
-			}
+            function format(date) {
+                return date.format(options.format);
+            }
 
-			function formatted(dates) {
-				return [format(dates.startDate), format(dates.endDate)].join(options.separator);
-			}
+            function formatted(dates) {
+                return [format(dates.startDate), format(dates.endDate)].join(options.separator);
+            }
 
-			ngModel.$formatters.unshift(function (modelValue) {
-				if (!modelValue) return '';
-				return modelValue;
-			});
+            ngModel.$formatters.unshift(function (modelValue) {
+                if (!modelValue) return '';
+                return modelValue;
+            });
 
-			ngModel.$parsers.unshift(function (viewValue) {
-				return viewValue;
-			});
+            ngModel.$parsers.unshift(function (viewValue) {
+                return viewValue;
+            });
 
-			ngModel.$render = function () {
-				if (!ngModel.$viewValue || !ngModel.$viewValue.startDate) return;
-				$element.val(formatted(ngModel.$viewValue));
-			};
+            ngModel.$render = function () {
+                if (!ngModel.$viewValue || !ngModel.$viewValue.startDate) return;
+                $element.val(formatted(ngModel.$viewValue));
+            };
 
-			$scope.$watch($attributes.ngModel, function (modelValue) {
-				if (!modelValue || (!modelValue.startDate)) {
-					ngModel.$setViewValue({ startDate: moment().startOf('day'), endDate: moment().startOf('day') });
-					return;
-				}
-				$element.data('daterangepicker').startDate = modelValue.startDate;
-				$element.data('daterangepicker').endDate = modelValue.endDate;
-				$element.data('daterangepicker').updateView();
-				$element.data('daterangepicker').updateCalendars();
-				$element.data('daterangepicker').updateInputText();
-			});
+            $scope.$watch($attributes.ngModel, function (modelValue) {
+                if (!modelValue || (!modelValue.startDate)) {
+                    ngModel.$setViewValue({ startDate: moment().startOf('day'), endDate: moment().startOf('day') });
+                    return;
+                }
+                $element.data('daterangepicker').startDate = modelValue.startDate;
+                $element.data('daterangepicker').endDate = modelValue.endDate;
+                $element.data('daterangepicker').updateView();
+                $element.data('daterangepicker').updateCalendars();
+                $element.data('daterangepicker').updateInputText();
+            });
 
-			$element.daterangepicker(options, function(start, end) {
-				$scope.$apply(function () {
-					ngModel.$setViewValue({ startDate: start, endDate: end });
-					ngModel.$render();
-				});
-			});			
-		}
-	};
+            $element.daterangepicker(options, function(start, end) {
+                $scope.$apply(function () {
+                    ngModel.$setViewValue({ startDate: start, endDate: end });
+                    ngModel.$render();
+                });
+            });
+        }
+    };
 });
 
 })(angular);

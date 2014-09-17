@@ -1,46 +1,119 @@
-<link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="components/bootstrap-daterangepicker/daterangepicker-bs3.css">
-<script type="text/javascript" src="components/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="components/momentjs/min/moment.min.js"></script>
-<script type="text/javascript" src="components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="components/angular/angular.min.js"></script>
-<script type="text/javascript" src="ng-bs-daterangepicker.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap-daterangepicker/daterangepicker-bs3.css">
+    <script type="text/javascript" src="components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="ng-bs-daterangepicker.js"></script>
+</head>
+<body>
 
-<br>
-<div ng-app="ngBootstrap" ng-controller="sample" class="container">
-	<div>
-		<pre>&lt;input type="daterange" ng-model="dates1"> <span>{{</span>dates1|json}}</pre>
-		<input type="daterange" ng-model="dates1"> <code>{{dates1|json}}</code>
-	</div>
-	<hr>
-	<div>
-		<pre>&lt;input type="daterange" ng-model="dates2" format="MMM DD" separator="/"> <span>{{</span>dates2|json}}</pre>
-		<input type="daterange" ng-model="dates2" format="MMM DD" separator="/"> <code>{{dates2|json}}</code>
-	</div>
-	<hr>
-	<div>
-		<pre>&lt;input type="daterange" ng-model="dates3" separator="/" min-date="2013-09-10" max-date="2013-09-20" limit="1 day"> <span>{{</span>dates3|json}}</pre>
-		<input type="daterange" ng-model="dates3" separator="/" min-date="2013-09-10" max-date="2013-09-20" limit="1 day" > <code>{{dates3|json}}</code>
-	</div>
-	<hr>
-	<div>
-		<pre>&lt;input type="daterange" ng-model="dates4" options="ranges"> <span>{{</span>dates4|json}}</pre>
-		<input type="daterange" ng-model="dates4" ranges="ranges"> <code>{{dates4|json}}</code>
-	</div>	
-</div>
+    <header class="navbar navbar-inverse navbar-static-top" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../" class="navbar-brand">Angular Bootstrap DateRangePicker</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                </ul>
+            </nav>
+        </div>
+    </header>
 
- <script type="text/javascript">	
-	function sample($scope, $filter) {
-		$scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
-		$scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
-		$scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
-		$scope.ranges = {
-			'Today': [moment(), moment()],
-			'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-			'Last 7 days': [moment().subtract('days', 7), moment()],
-			'Last 30 days': [moment().subtract('days', 30), moment()],
-			'This month': [moment().startOf('month'), moment().endOf('month')]
-		};
-	}
-</script>
+    <div ng-app="ngBootstrap" ng-controller="sample" class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Default Options</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates1"> <code>{{dates1|json}}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Format and Separator</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates2" format="MMM DD" separator="/"> <code>{{dates2|json}}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">MaxDate and MinDate</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates3" separator="/" min-date="2013-09-10" max-date="2013-09-20" limit="1 day" > <code>{{dates3|json}}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Ranges</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates4" ranges="ranges"> <code>{{dates4|json}}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Show Time Picker</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates5" time-picker="true" time-picker-increment="10" time-picker-12-hour="true"> <code>{{dates4|json}}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Single Date Picker</h1>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="daterange" class="form-control" ng-model="dates6" single-date-picker="true"> <code>{{dates4|json}}</code>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        function sample($scope, $filter) {
+            $scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
+            $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
+            $scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
+            $scope.ranges = {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                'Last 7 days': [moment().subtract('days', 7), moment()],
+                'Last 30 days': [moment().subtract('days', 30), moment()],
+                'This month': [moment().startOf('month'), moment().endOf('month')]
+            };
+        }
+    </script>
+
+</body>
+</html>
