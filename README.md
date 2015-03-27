@@ -1,9 +1,9 @@
-ng-bs-daterangepicker
+angular-bootstrap-daterangepicker
 =====================
 
 Angular directive for Dan Grossman's [bootstrap-daterangepicker](https://github.com/dangrossman/bootstrap-daterangepicker).
 
-Demo: http://luisfarzati.github.io/ng-bs-daterangepicker
+Demo: http://luisfarzati.github.io/angular-bootstrap-daterangepicker
 
 Installation
 ------------
@@ -11,13 +11,13 @@ Installation
 Using bower:
 
 ```
-bower install ng-bs-daterangepicker
+bower install angular-bootstrap-daterangepicker
 ```
 
 Using npm:
 
 ```
-npm install ng-bs-daterangepicker
+npm install angular-bootstrap-daterangepicker
 ```
 
 
@@ -39,7 +39,7 @@ You should already have a bunch of scripts and CSS required for bootstrap-datera
 to the list above, you should add:
 
 ```
-<script type="text/javascript" src="ng-bs-daterangepicker.js"></script>
+<script type="text/javascript" src="angular-bootstrap-daterangepicker.js"></script>
 ```
 
 Then, inject `ngBootstrap` in your application module:

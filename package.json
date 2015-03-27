@@ -1,17 +1,17 @@
 {
-  "name": "ng-bs-daterangepicker",
+  "name": "angular-bootstrap-daterangepicker",
   "description": "AngularJS directive for bootstrap-daterangepicker",
   "version": "0.0.3",
-  "filename": "./src/ng-bs-daterangepicker.js",
-  "homepage": "http://github.com/luisfarzati/ng-bs-daterangepicker",
+  "filename": "./src/angular-bootstrap-daterangepicker.js",
+  "homepage": "http://github.com/wangshijun/angular-bootstrap-daterangepicker",
   "author": {
     "name": "Luis Farzati",
     "email": "lfarzati@gmail.com",
-    "url": "http://github.com/luisfarzati"
+    "url": "http://github.com/wangshijun"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/luisfarzati/ng-bs-daterangepicker.git"
+    "url": "git://github.com/wangshijun/angular-bootstrap-daterangepicker.git"
   },
   "keywords": [
     "angular",
@@ -24,14 +24,17 @@
     "calendar"
   ],
   "bugs": {
-    "url": "http://github.com/luisfarzati/ng-bs-daterangepicker/issues"
+    "url": "http://github.com/wangshijun/angular-bootstrap-daterangepicker/issues"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "latest",
-    "grunt-karma": "latest",
     "grunt-contrib-jshint": "latest",
-   "grunt-contrib-uglify": "latest"
+    "grunt-contrib-uglify": "latest",
+    "grunt-karma": "latest",
+    "jasmine": "^2.2.1",
+    "jasmine-core": "^2.2.0",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4"
   }
 }

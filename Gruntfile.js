@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      files: ['src/ng-bs-daterangepicker.js', 'test/**/*.js']
+      files: ['src/angular-bootstrap-daterangepicker.js', 'test/**/*.js']
     },
 
     karma: {
@@ -18,13 +18,13 @@ module.exports = function(grunt) {
           autoWatch: true,
           singleRun: true,
           files: [
-            'src/components/jquery/jquery.js',
+            'src/components/jquery/dist/jquery.js',
             'src/components/angular/angular.js',
             'src/components/angular-mocks/angular-mocks.js',
             'src/components/bootstrap/dist/js/bootstrap.js',
-            'src/components/momentjs/min/moment.min.js',
+            'src/components/moment/min/moment.min.js',
             'src/components/bootstrap-daterangepicker/daterangepicker.js',
-            'src/ng-bs-daterangepicker.js',
+            'src/angular-bootstrap-daterangepicker.js',
             'test/**/*.js']
         }
       }
@@ -33,13 +33,13 @@ module.exports = function(grunt) {
     uglify: {
        options: {
           preserveComments: 'some',
-          sourceMap: 'dist/ng-bs-daterangepicker.min.js.map',
-          sourceMappingURL: 'ng-bs-daterangepicker.min.js.map',
+          sourceMap: 'dist/angular-bootstrap-daterangepicker.min.js.map',
+          sourceMappingURL: 'angular-bootstrap-daterangepicker.min.js.map',
           report: 'min'
        },
        dist: {
           files: {
-             'dist/ng-bs-daterangepicker.min.js': ['src/ng-bs-daterangepicker.js']
+             'dist/angular-bootstrap-daterangepicker.min.js': ['src/angular-bootstrap-daterangepicker.js']
           }
        }
      }
