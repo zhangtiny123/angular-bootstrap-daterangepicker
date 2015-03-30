@@ -31,7 +31,7 @@
         </div>
     </header>
 
-    <div ng-app="ngBootstrap" ng-controller="sample" class="container">
+    <div ng-app="demo" ng-controller="DemoController" class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">Default Options</h1>
@@ -101,7 +101,7 @@
     </div>
 
     <script type="text/javascript">
-        function sample($scope, $filter) {
+        angular.module('demo', ['ngBootstrap']).controller('DemoController', function ($scope, $filter) {
             $scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
             $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
             $scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
@@ -112,7 +112,7 @@
                 'Last 30 days': [moment().subtract('days', 30), moment()],
                 'This month': [moment().startOf('month'), moment().endOf('month')]
             };
-        }
+        });
     </script>
 
 </body>
