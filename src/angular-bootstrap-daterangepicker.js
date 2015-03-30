@@ -6,7 +6,7 @@
 (function (angular) {
 'use strict';
 
-angular.module('ngBootstrap', []).directive('input', function ($compile, $parse) {
+angular.module('angular-bootstrap-daterangepicker', []).directive('input', function ($compile, $parse) {
     return {
         restrict: 'E',
         require: '?ngModel',

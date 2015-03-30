@@ -101,7 +101,7 @@
     </div>
 
     <script type="text/javascript">
-        angular.module('demo', ['ngBootstrap']).controller('DemoController', function ($scope, $filter) {
+        angular.module('demo', ['angular-bootstrap-daterangepicker']).controller('DemoController', function ($scope, $filter) {
             $scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
             $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
             $scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
