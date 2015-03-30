@@ -42,10 +42,10 @@ to the list above, you should add:
 <script type="text/javascript" src="angular-bootstrap-daterangepicker.js"></script>
 ```
 
-Then, inject `ngBootstrap` in your application module:
+Then, inject `angular-bootstrap-daterangepicker` in your application module:
 
 ```
-angular.module('myApp', ['ngBootstrap']);
+angular.module('myApp', ['angular-bootstrap-daterangepicker']);
 ```
 
 and then just add an `input` of type `daterange`:
