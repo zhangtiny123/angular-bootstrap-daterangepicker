@@ -10,11 +10,12 @@ angular.module('angular-bootstrap-daterangepicker', []).directive('input', funct
     return {
         restrict: 'E',
         require: '?ngModel',
-        link: function ($scope, $element, $attributes, ngModel) {
-            if ($attributes.type !== 'daterange' || ngModel === null ) return;
+        link: function ($scope, $element, $attributes, ngModelCtrl) {
+            if ($attributes.type !== 'daterange' || ngModelCtrl === null ) return;
 
             var options = {};
             options.format = $attributes.format || 'YYYY-MM-DD';
+            options.timeZone = $attributes.timeZone || '08:00';
             options.separator = $attributes.separator || ' - ';
             options.minDate = $attributes.minDate && moment($attributes.minDate);
             options.maxDate = $attributes.maxDate && moment($attributes.maxDate);
@@ -27,43 +28,27 @@ angular.module('angular-bootstrap-daterangepicker', []).directive('input', funct
             options.timePicker12Hour = $attributes.timePicker12Hour && $parse($attributes.timePicker12Hour)($scope);
             options.singleDatePicker = $attributes.singleDatePicker && $parse($attributes.singleDatePicker)($scope);
 
-            function format(date) {
-                return date.format(options.format);
-            }
-
-            function formatted(dates) {
-                return [format(dates.startDate), format(dates.endDate)].join(options.separator);
-            }
-
-            ngModel.$formatters.unshift(function (modelValue) {
-                if (!modelValue) return '';
-                return modelValue;
+            ngModelCtrl.$formatters.push(function (modelValue) {
+                return modelValue ? [modelValue.startDate.format(options.format), modelValue.endDate.format(options.format)].join(options.separator) : '';
             });
 
-            ngModel.$parsers.unshift(function (viewValue) {
-                return viewValue;
+            ngModelCtrl.$parsers.push(function (viewValue) {
+                var dates = viewValue.split(options.separator);
+                return viewValue ? { startDate: moment(dates[0]), endDate: moment(dates[1]) } : null;
             });
-
-            ngModel.$render = function () {
-                if (!ngModel.$viewValue || !ngModel.$viewValue.startDate) return;
-                $element.val(formatted(ngModel.$viewValue));
-            };
 
             $scope.$watch($attributes.ngModel, function (modelValue) {
-                if (!modelValue || (!modelValue.startDate)) {
-                    ngModel = { startDate: moment().startOf('day'), endDate: moment().startOf('day') };
+                if (!modelValue || !modelValue.startDate || !modelValue.endDate) {
                     return;
                 }
-                $element.data('daterangepicker').startDate = modelValue.startDate;
-                $element.data('daterangepicker').endDate = modelValue.endDate;
-                $element.data('daterangepicker').updateView();
-                $element.data('daterangepicker').updateCalendars();
-                $element.data('daterangepicker').updateInputText();
+                $element.data('daterangepicker').setStartDate(modelValue.startDate);
+                $element.data('daterangepicker').setEndDate(modelValue.endDate);
             });
 
             $element.daterangepicker(options, function(start, end) {
                 $scope.$apply(function () {
-                    ngModel = { startDate: start, endDate: end };
+                    ngModelCtrl.$setViewValue({ startDate: start, endDate: end });
+                    ngModelCtrl.$render();
                 });
             });
         }

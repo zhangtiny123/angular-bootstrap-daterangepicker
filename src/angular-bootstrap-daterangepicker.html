@@ -49,7 +49,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <input type="daterange" class="form-control" ng-model="dates2" format="MMM DD" separator="/"> <code>{{dates2|json}}</code>
+                    <input type="daterange" class="form-control" ng-model="dates2" separator="/"> <code>{{dates2|json}}</code>
                 </div>
             </div>
         </div>
@@ -112,6 +112,12 @@
                 'Last 30 days': [moment().subtract('days', 30), moment()],
                 'This month': [moment().startOf('month'), moment().endOf('month')]
             };
+
+            ['dates1', 'dates2', 'dates3', 'dates4', 'dates5'].forEach(function (key) {
+                $scope.$watch(key, function () {
+                    console.log(key, arguments);
+                });
+            });
         });
     </script>
 
