@@ -45,6 +45,11 @@ angular.module('angular-bootstrap-daterangepicker', []).directive('input', funct
                 $element.data('daterangepicker').setEndDate(modelValue.endDate);
             });
 
+            $scope.$on('daterangepicker.rangeschange', function () {
+                options.ranges = $scope.ranges;
+                $element.data('daterangepicker').setOptions(options);
+            });
+
             $element.daterangepicker(options, function(start, end) {
                 $scope.$apply(function () {
                     ngModelCtrl.$setViewValue({ startDate: start, endDate: end });
