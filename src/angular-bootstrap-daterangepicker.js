@@ -15,7 +15,7 @@ angular.module('angular-bootstrap-daterangepicker', []).directive('input', funct
 
             var options = {};
             options.format = $attributes.format || 'YYYY-MM-DD';
-            options.timeZone = $attributes.timeZone || '08:00';
+            options.timeZone = $attributes.timeZone || 'Asia/Shanghai';
             options.separator = $attributes.separator || ' - ';
             options.minDate = $attributes.minDate && moment($attributes.minDate);
             options.maxDate = $attributes.maxDate && moment($attributes.maxDate);
