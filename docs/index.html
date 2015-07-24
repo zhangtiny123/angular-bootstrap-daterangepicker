@@ -9,7 +9,7 @@
     <script type="text/javascript" src="components/moment/min/moment.min.js"></script>
     <script type="text/javascript" src="components/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript" src="components/angular/angular.js"></script>
-    <script type="text/javascript" src="angular-bootstrap-daterangepicker.js"></script>
+    <script type="text/javascript" src="../src/angular-bootstrap-daterangepicker.js"></script>
 </head>
 <body>
 
@@ -102,14 +102,14 @@
 
     <script type="text/javascript">
         angular.module('demo', ['angular-bootstrap-daterangepicker']).controller('DemoController', function ($scope, $filter) {
-            $scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
-            $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
-            $scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
+            $scope.dates2 = { startDate: moment(Date.parse('2013-09-20')), endDate: moment(Date.parse('2013-09-25')) };
+            $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'days') };
+            $scope.dates4 = { startDate: moment().subtract(1, 'days'), endDate: moment().subtract(1, 'days') };
             $scope.ranges = {
                 'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                'Last 7 days': [moment().subtract('days', 7), moment()],
-                'Last 30 days': [moment().subtract('days', 30), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 days': [moment().subtract(7, 'days'), moment()],
+                'Last 30 days': [moment().subtract(30, 'days'), moment()],
                 'This month': [moment().startOf('month'), moment().endOf('month')]
             };
 
