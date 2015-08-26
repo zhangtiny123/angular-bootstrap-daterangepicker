@@ -5,6 +5,9 @@ Angular directive for Dan Grossman's [bootstrap-daterangepicker](https://github.
 
 Demo: http://luisfarzati.github.io/angular-bootstrap-daterangepicker
 
+Update: now it could support single date picker, just add  'single-date-picker="true"' to your input tag,
+		and it returns a moment object,when you specify the ng-model
+
 Installation
 ------------
 
