@@ -18,12 +18,12 @@ module.exports = function(grunt) {
           autoWatch: true,
           singleRun: true,
           files: [
-            'src/components/jquery/dist/jquery.js',
-            'src/components/angular/angular.js',
-            'src/components/angular-mocks/angular-mocks.js',
-            'src/components/bootstrap/dist/js/bootstrap.js',
-            'src/components/moment/min/moment.min.js',
-            'src/components/bootstrap-daterangepicker/daterangepicker.js',
+            'docs/components/jquery/dist/jquery.js',
+            'docs/components/angular/angular.js',
+            'docs/components/angular-mocks/angular-mocks.js',
+            'docs/components/bootstrap/dist/js/bootstrap.js',
+            'docs/components/moment/min/moment.min.js',
+            'docs/components/bootstrap-daterangepicker/daterangepicker.js',
             'src/angular-bootstrap-daterangepicker.js',
             'test/**/*.js']
         }
@@ -50,4 +50,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', ['jshint', 'karma']);
+
+  grunt.registerTask('build', ['jshint', 'uglify']);
 };

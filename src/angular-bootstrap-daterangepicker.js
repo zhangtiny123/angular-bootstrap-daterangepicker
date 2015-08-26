@@ -64,7 +64,7 @@
                 $element.daterangepicker(options, function(start, end) {
                     $scope.$apply(function () {
                         if (options.singleDatePicker) {
-                            ngModelCtrl.$setViewValue(end)
+                            ngModelCtrl.$setViewValue(end);
                         }
                         else {
                             ngModelCtrl.$setViewValue({ startDate: start, endDate: end });
