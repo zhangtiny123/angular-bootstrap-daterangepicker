@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-daterangepicker",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "main": "./src/angular-bootstrap-daterangepicker.js",
   "dependencies": {
     "angular": "~1.3",
