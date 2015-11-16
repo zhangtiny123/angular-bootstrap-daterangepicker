@@ -36,9 +36,12 @@
                 });
 
                 ngModelCtrl.$parsers.push(function (viewValue) {
-                    if (!options.singleDatePicker) {
+                    if (!options.singleDatePicker && typeof viewValue === "string") {
                         var dates = viewValue.split(options.separator);
                         return viewValue ? { startDate: moment(dates[0]), endDate: moment(dates[1]) } : null;
+                    }
+                    if (viewValue.startDate && viewValue.endDate) {
+                        return viewValue
                     }
                     return viewValue ? moment(viewValue) : null;
                 });
